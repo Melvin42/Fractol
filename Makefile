@@ -19,12 +19,13 @@ SRC_DIR	= src
 # Add dirs here
 
 UTILS_DIR	= utils
+PARSING_DIR	= parsing
 
 ## Compilating Utilities
 
-#FAST = -Ofast
+FAST = -Ofast
 
-DEBUG = -g3 #-fsanitize=address
+#DEBUG = -g3 #-fsanitize=address
 
 FLAGS = -Wall -Wextra -Werror $(FAST) $(DEBUG) -D_REENTRANT
 
@@ -34,19 +35,24 @@ CC = clang $(FLAGS) $(INC)
 
 INSTALL_LIBX = $(shell cd minilibx && sh configure && cd ..)
 
-UTILS_FT		= mlx_utils error
+UTILS_FT		= mlx_utils error free
+
+PARSING_FT		= args
 
 SRC_FT 			= main fractal control
 
 ## List of Utilities
 
 SRC = $(SRC_FT:%=$(SRC_DIR)/%.c) \
-	$(UTILS_FT:%=$(SRC_DIR)/$(UTILS_DIR)/%.c)
+	$(UTILS_FT:%=$(SRC_DIR)/$(UTILS_DIR)/%.c) \
+	$(PARSING_FT:%=$(SRC_DIR)/$(PARSING_DIR)/%.c)
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIRS = $(OBJ_DIR) \
-	$(UTILS_DIR:%=$(OBJ_DIR)/%)
+	$(UTILS_DIR:%=$(OBJ_DIR)/%) \
+	$(PARSING_DIR:%=$(OBJ_DIR)/%)
+
 
 ## Rules of Makefile
 

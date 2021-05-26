@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control.c                                          :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/26 22:41:14 by melperri         ###   ########.fr       */
+/*   Created: 2021/05/26 21:01:00 by melperri          #+#    #+#             */
+/*   Updated: 2021/05/26 21:19:38 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fractol.h"
+#include "../../inc/fractol.h"
 
-void	ft_control(t_all *all)
+void	ft_help_args(void)
 {
-	if (all->key.escape == 1)
-		ft_exit(all);
-}
-
-int	handle_keypress(int keysym, t_all *all)
-{
-	if (keysym == XK_Escape)
-		all->key.escape = 1;
-	return (0);
-}
-
-/*
-**int	handle_keyrelease(int keysym, t_all *all)
-**{
-**	if (keysym == XK_Escape)
-**		all->key.escape = 0;
-**}
-*/
-
-int	ft_exit(t_all *all)
-{
-	ft_free_all(all);
-	exit(SUCCESS);
-	return (0);
+	printf("How to use : Fractol program need a single argument\n\n");
+	printf("  -Julia%25s\n", "Julia's fractal");
+	printf("  -Mandelbrot%25s\n", "Mandelbrot's fractal");
 }
