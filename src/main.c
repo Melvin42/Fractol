@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:03:25 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/26 17:35:22 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/26 19:09:04 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	render(t_all *all)
 {
 	if (all->win_ptr == NULL)
 		return (check_error(all, MLX_ERROR));
+	fractal(all);
 	return (0);
 }
 static void	ft_loop(t_all *all)

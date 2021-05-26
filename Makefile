@@ -24,7 +24,7 @@ UTILS_DIR	= utils
 
 #FAST = -Ofast
 
-#DEBUG = -g3 #-fsanitize=address
+DEBUG = -g3 #-fsanitize=address
 
 FLAGS = -Wall -Wextra -Werror $(FAST) $(DEBUG) -D_REENTRANT
 
@@ -36,7 +36,7 @@ INSTALL_LIBX = $(shell cd minilibx && sh configure && cd ..)
 
 UTILS_FT		= mlx_utils error
 
-SRC_FT 			= main control
+SRC_FT 			= main fractal control
 
 ## List of Utilities
 

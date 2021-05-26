@@ -6,11 +6,16 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:14:37 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/26 11:15:30 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/26 19:01:03 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/fractol.h"
+
+int	encode_rgb(int red, int green, int blue)
+{
+	return (red << 16 | green << 8 | blue);
+}
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
