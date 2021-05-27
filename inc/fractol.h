@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/26 23:06:00 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/27 08:25:52 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_all
 	void		*win_ptr;
 	int			rx;
 	int			ry;
+	int			put_x;
+	int			put_y;
 	int			i_max;
 	double		x1;
 	double		x2;
@@ -102,6 +104,7 @@ void			ft_help_args(void);
 */
 
 int				ft_mandelbrot(t_all *all);
+int				ft_julia(t_all *all);
 
 /*
 ********************************************************************************
