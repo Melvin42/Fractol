@@ -126,7 +126,9 @@ void			ft_free_all(t_all *all);
 */
 
 void			ft_control(t_all *all);
-int				ft_exit(t_all *all);
+
 int				handle_keypress(int keysym, t_all *all);
+int				handle_mouse(int button, int x, int y, t_all *all);
+int				ft_exit(t_all *all);
 
 #endif

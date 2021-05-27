@@ -22,8 +22,8 @@ int	ft_julia(t_all *all)
 	all->x2 = 2;
 	all->y1 = -1.2;
 	all->y2 = 1.2;
-	all->i_max = 150;
 
+	all->zoom = all->i_max * 2;
 	int	img_x = (int)(all->x2 - all->x1) * all->zoom;
 	int	img_y = (int)(all->y2 - all->y1) * all->zoom;
 	if (all->img.mlx_img)
@@ -60,6 +60,5 @@ int	ft_julia(t_all *all)
 		}
 	}
 	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->img.mlx_img, all->put_x, all->put_y);
-	all->zoom++;
 	return (0);
 }
