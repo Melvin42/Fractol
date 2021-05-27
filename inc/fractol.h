@@ -72,8 +72,11 @@ typedef struct s_all
 	void		*win_ptr;
 	int			rx;
 	int			ry;
+	int			mouse_x;
+	int			mouse_y;
 	int			put_x;
 	int			put_y;
+	int			flag_start;
 	int			i_max;
 	double		x1;
 	double		x2;

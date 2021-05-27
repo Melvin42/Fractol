@@ -29,12 +29,51 @@ int	handle_mouse(int button, int x, int y, t_all *all)
 {
 	(void)x;
 	(void)y;
-	if (button == Button4)
- 		all->i_max += 1;
+	double	h;
+
+	h = 1;
 	if (button == Button5)
+	{
+		all->flag_start = 1;
+	mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
+		all->x1 = (double)((double)all->mouse_x / 1800.0 - h);
+		if (all->x1 < -2.1)
+			all->x1 = -2.1;
+		all->x2 = (double)((double)all->mouse_x / 1800.0 + h);
+		if (all->x2 < 0.6)
+				all->x2 = 0.6;
+		all->y1 = (double)((double)all->mouse_y / 1000.0 - h);
+		if (all->y1 < -1.2)
+				all->y1 = -1.2;
+		all->y2 = (double)((double)all->mouse_y / 1000.0 + h);
+		if (all->y2 > 1.2)
+				all->y2 = 1.2;
+		all->zoom += 1;
+ 		all->i_max += 1;
+	}
+	if (button == Button4)
+	{
+		all->flag_start = 1;
+		mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
+		all->x1 = (double)((double)all->mouse_x / 1800.0 - h);
+		if (all->x1 < -2.1)
+			all->x1 = -2.1;
+		all->x2 = (double)((double)all->mouse_x / 1800.0 + h);
+		if (all->x2 < 0.6)
+				all->x2 = 0.6;
+		all->y1 = (double)((double)all->mouse_y / 1000.0 - h);
+		if (all->y1 < -1.2)
+				all->y1 = -1.2;
+		all->y2 = (double)((double)all->mouse_y / 1000.0 + h);
+		if (all->y2 > 1.2)
+				all->y2 = 1.2;
+		all->zoom -= 1;
 		all->i_max -= 1;
+	}
 	if (all->i_max <= 0)
 		all->i_max = 1;
+	if (all->zoom <= 0)
+		all->zoom = 1;
 	return (0);
 }
 

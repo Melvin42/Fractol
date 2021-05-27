@@ -20,21 +20,21 @@ int	ft_mandelbrot(t_all *all)
 	int		red;
 	int		green;
 	int		blue;
-	int		h;
-	int		mouse_x;
-	int		mouse_y;
+	int		img_x;
+	int		img_y;
 
-
-	(void)h;
-	mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &mouse_x, &mouse_y);
-	all->zoom = all->i_max * 2;
-	all->x1 = -2.1;
-	all->x2 = 0.6;
-	all->y1 = -1.2;
-	all->y2 = 1.2;
-	
-	int	img_x = (int)((all->x2 - all->x1) * all->zoom);
-	int	img_y = (int)((all->y2 - all->y1) * all->zoom);
+//	all->zoom = all->i_max * 2;
+	if (all->flag_start == 0)
+	{
+  		all->x1 = -2.1;
+  		all->x2 = 0.6;
+  		all->y1 = -1.2;
+  		all->y2 = 1.2;
+	}
+	//img_x = (int)((all->x2 - all->x1) * all->zoom);
+	//img_y = (int)((all->y2 - all->y1) * all->zoom);
+	img_x = 1800;
+	img_y = 1000;
 	if (all->img.mlx_img)
 		mlx_destroy_image(all->mlx_ptr, all->img.mlx_img);
 	if (ft_new_mlx_img(all, &all->img, img_x, img_y) < 0)
