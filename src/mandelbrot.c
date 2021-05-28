@@ -12,6 +12,22 @@
 
 #include "../inc/fractol.h"
 
+static void	ft_background(t_all *all)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y <= all->img.res_y)
+	{
+		x = -1;
+		while  (++x <= all->img.res_x)
+		{
+			img_pix_put(&all->img, x, y, BLACK_PIX);
+		}
+	}
+}
+
 int	ft_mandelbrot(t_all *all)
 {
 	int		x;
@@ -20,34 +36,24 @@ int	ft_mandelbrot(t_all *all)
 	int		red;
 	int		green;
 	int		blue;
-	int		img_x;
-	int		img_y;
+	int		color;
 
-//	all->zoom = all->i_max * 2;
-	if (all->flag_start == 0)
-	{
-  		all->x1 = -2.1;
-  		all->x2 = 0.6;
-  		all->y1 = -1.2;
-  		all->y2 = 1.2;
-	}
 	//img_x = (int)((all->x2 - all->x1) * all->zoom);
 	//img_y = (int)((all->y2 - all->y1) * all->zoom);
-	img_x = 1800;
-	img_y = 1000;
+	all->img_x = all->rx;// / (all->x2 - all->x1);
+	all->img_y = all->ry;// / (all->y2 - all->y1);
 	if (all->img.mlx_img)
 		mlx_destroy_image(all->mlx_ptr, all->img.mlx_img);
-	if (ft_new_mlx_img(all, &all->img, img_x, img_y) < 0)
+	if (ft_new_mlx_img(all, &all->img, all->img_x, all->img_y) < 0)
 		return (check_error(all, MLX_ERROR));
+	ft_background(all);
 	x = -1;
-//	printf("x %d y %d\n", mouse_x, mouse_y);
-	while (++x < img_x)
+	color = 0;
+	while (++x < all->img_x)
 	{
 		y = -1;
-		red = 0;
-		green = 0;
-		blue = 0;
-		while (++y < img_y)
+		color = 0;
+		while (++y < all->img_y)
 		{
 			all->c_r = (double)x / all->zoom + all->x1;
 			all->c_i = (double)y / all->zoom + all->y1;
@@ -65,17 +71,39 @@ int	ft_mandelbrot(t_all *all)
 				all->z_i = 2 * all->tmp * all->z_i + all->c_i;
 				i++;
 			}
+			if (i * color / all->i_max < 50)
+			{
+				red = 255;
+				green = 50;
+				blue = 100;
+			}
+			else if (i * color / all->i_max >= 50 && i * color / all->i_max < 100)
+			{
+				red = 0;
+				green = 100;
+				blue = 128;
+			}
+			else if (i * color / all->i_max >= 100 && i * color / all->i_max < 175)
+			{
+				red = 100;
+				green = 100;
+				blue = 100;
+			}
+			else if (i * color / all->i_max >= 175 && i * color / all->i_max < 255)
+			{
+				red = 200;
+				green = 255;
+				blue = 58;
+			}
 			if (i == all->i_max)
 				img_pix_put(&all->img, x, y, BLACK_PIX);
 			else
-				img_pix_put(&all->img, x, y, encode_rgb(i * red / all->i_max, i * green++ / all->i_max, i * blue++ / all->i_max));
-				
+			{
+				img_pix_put(&all->img, x, y, encode_rgb(i * red / all->i_max, i * green / all->i_max, i * blue / all->i_max));
+				color++;
+			}
 		}
 	}
-//	int f = 10;
-//	all->put_x -= f;
-//	all->put_y -= f;
 	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->img.mlx_img, all->put_x, all->put_y);
-
 	return (0);
 }

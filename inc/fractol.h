@@ -64,6 +64,16 @@ typedef struct s_img
 typedef struct s_key
 {
 	int			escape;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	int			plus;
+	int			minus;
+	int			zoom_in;
+	int			zoom_out;
+	int			reset;
+
 }	t_key;
 
 typedef struct s_all
@@ -76,6 +86,8 @@ typedef struct s_all
 	int			mouse_y;
 	int			put_x;
 	int			put_y;
+	int			img_x;
+	int			img_y;
 	int			flag_start;
 	int			i_max;
 	double		x1;
@@ -108,6 +120,7 @@ void			ft_help_args(void);
 
 int				ft_mandelbrot(t_all *all);
 int				ft_julia(t_all *all);
+void			ft_set_mandelbrot(t_all *all);
 
 /*
 ********************************************************************************
@@ -131,6 +144,7 @@ void			ft_free_all(t_all *all);
 void			ft_control(t_all *all);
 
 int				handle_keypress(int keysym, t_all *all);
+int				handle_keyrelease(int keysym, t_all *all);
 int				handle_mouse(int button, int x, int y, t_all *all);
 int				ft_exit(t_all *all);
 
