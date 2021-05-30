@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/27 08:25:52 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:22:33 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			ft_set_julia(t_all *all);
 */
 
 void			img_pix_put(t_img *img, int x, int y, int color);
+void			ft_background(t_all *all);
 int				ft_new_mlx_img(t_all *all, t_img *img, int res_x, int res_y);
 int				encode_rgb(int red, int green, int blue);
 
@@ -151,7 +152,8 @@ void			ft_control(t_all *all);
 
 int				handle_keypress(int keysym, t_all *all);
 int				handle_keyrelease(int keysym, t_all *all);
-int				handle_mouse(int button, int x, int y, t_all *all);
+int				handle_mouse_mandelbrot(int button, int x, int y, t_all *all);
+int				handle_mouse_julia(int button, int x, int y, t_all *all);
 int				ft_exit(t_all *all);
 
 #endif

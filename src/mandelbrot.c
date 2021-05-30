@@ -6,25 +6,11 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:46:52 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/27 12:45:02 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:22:37 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
-
-static void	ft_background(t_all *all)
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y <= all->img.res_y)
-	{
-		x = -1;
-		while  (++x <= all->img.res_x)
-			img_pix_put(&all->img, x, y, BLACK_PIX);
-	}
-}
 
 int	ft_mandelbrot(t_all *all)
 {

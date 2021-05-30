@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:03:25 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/27 12:38:24 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:11:37 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_mandelbrot_loop(t_all *all)
 	mlx_hook(all->win_ptr, FocusIn, FocusChangeMask, &mandelbrot_render, all);
 	mlx_hook(all->win_ptr, KeyPress, KeyPressMask, &handle_keypress, all);
 	mlx_hook(all->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, all);
-	mlx_mouse_hook(all->win_ptr, &handle_mouse, all);
+	mlx_mouse_hook(all->win_ptr, &handle_mouse_mandelbrot, all);
 	mlx_loop(all->mlx_ptr);
 }
 
@@ -49,7 +49,8 @@ static void	ft_julia_loop(t_all *all)
 		&ft_exit, all);
 	mlx_hook(all->win_ptr, FocusIn, FocusChangeMask, &julia_render, all);
 	mlx_hook(all->win_ptr, KeyPress, KeyPressMask, &handle_keypress, all);
-	mlx_mouse_hook(all->win_ptr, &handle_mouse, all);
+	mlx_hook(all->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, all);
+	mlx_mouse_hook(all->win_ptr, &handle_mouse_julia, all);
 	mlx_loop(all->mlx_ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/26 22:41:14 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/30 22:07:46 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_control(t_all *all)
 		printf("x2 = %f\n", all->x2);
 		printf("y1 = %f\n", all->y1);
 		printf("y2 = %f\n", all->y2);
+		printf("freq = %f\n", all->freq);
 		printf("i_max = %d\n", all->i_max);
 	}
 	if (all->key.reset == 1)
@@ -103,7 +104,7 @@ int	handle_keyrelease(int keysym, t_all *all)
 	return (0);
 }
 
-int	handle_mouse(int button, int x, int y, t_all *all)
+int	handle_mouse_mandelbrot(int button, int x, int y, t_all *all)
 {
 	(void)x;
 	(void)y;
@@ -127,8 +128,35 @@ int	handle_mouse(int button, int x, int y, t_all *all)
 		all->y2 = (double)(((double)all->mouse_y * 2.4) / all->img_y + 0.6);
 		all->zoom -= 1.5;
 	}
-	if (all->i_max <= 0)
-		all->i_max = 1;
+	if (all->zoom <= 0)
+		all->zoom = 1;
+	return (0);
+}
+
+int	handle_mouse_julia(int button, int x, int y, t_all *all)
+{
+	(void)x;
+	(void)y;
+
+	if (button == Button5)
+	{
+		mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
+		all->x1 = (double)(((double)all->mouse_x * 3.0) / all->img_x - 1.0);
+		all->x2 = (double)(((double)all->mouse_x * 3.0) /  all->img_x + 2.0);
+		all->y1 = (double)(((double)all->mouse_y * 2.4) / all->img_y - 1.2);
+		all->y2 = (double)(((double)all->mouse_y * 2.4) / all->img_y + 0.6);
+		all->zoom += 1.5;
+	}
+
+	if (button == Button4)
+	{
+		mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
+		all->x1 = (double)(((double)all->mouse_x * 3.0) /  all->img_x - 1.0);
+		all->x2 = (double)(((double)all->mouse_x * 3.0) / all->img_x + 3.0);
+		all->y1 = (double)(((double)all->mouse_y * 2.4) / all->img_y - 1.2);
+		all->y2 = (double)(((double)all->mouse_y * 2.4) / all->img_y + 0.6);
+		all->zoom -= 1.5;
+	}
 	if (all->zoom <= 0)
 		all->zoom = 1;
 	return (0);
