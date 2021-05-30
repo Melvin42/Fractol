@@ -74,8 +74,8 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	ft_memset(&all, 0, sizeof(all));
-	all.rx = 1800;
-	all.ry = 1000;
+	all.rx = 800;
+	all.ry = 600;
 	ft_init_mlx(&all);
 	if (ft_strncmp(av[1], "-Mandelbrot", 11) == 0)
 	{
@@ -83,6 +83,9 @@ int	main(int ac, char **av)
 		ft_mandelbrot_loop(&all);
 	}
 	else if (ft_strncmp(av[1], "-Julia", 6) == 0)
+	{
+		ft_set_julia(&all);
 		ft_julia_loop(&all);
+	}
 	return (0);
 }

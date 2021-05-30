@@ -18,12 +18,6 @@ int	ft_julia(t_all *all)
 	int	y;
 	int	i;
 
-	all->x1 = -1;
-	all->x2 = 2;
-	all->y1 = -1.2;
-	all->y2 = 1.2;
-
-	all->zoom = all->i_max * 2;
 	int	img_x = (int)(all->x2 - all->x1) * all->zoom;
 	int	img_y = (int)(all->y2 - all->y1) * all->zoom;
 	if (all->img.mlx_img)

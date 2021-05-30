@@ -73,6 +73,7 @@ typedef struct s_key
 	int			zoom_in;
 	int			zoom_out;
 	int			reset;
+	int			print;
 
 }	t_key;
 
@@ -82,6 +83,9 @@ typedef struct s_all
 	void		*win_ptr;
 	int			rx;
 	int			ry;
+	int			r;
+	int			g;
+	int			b;
 	int			mouse_x;
 	int			mouse_y;
 	int			put_x;
@@ -90,6 +94,7 @@ typedef struct s_all
 	int			img_y;
 	int			flag_start;
 	int			i_max;
+	double		freq;
 	double		x1;
 	double		x2;
 	double		y1;
@@ -121,6 +126,7 @@ void			ft_help_args(void);
 int				ft_mandelbrot(t_all *all);
 int				ft_julia(t_all *all);
 void			ft_set_mandelbrot(t_all *all);
+void			ft_set_julia(t_all *all);
 
 /*
 ********************************************************************************

@@ -21,17 +21,26 @@ void	ft_control(t_all *all)
 	if (all->key.minus == 1)
 		all->i_max -= 1;
 	if (all->key.up == 1)
-		all->y1 += 0.1;
+		all->y1 += 0.01;
 	if (all->key.down == 1)
-		all->y1 -= 0.1;
+		all->y1 -= 0.01;
 	if (all->key.left == 1)
-		all->x1 += 0.1;
+		all->x1 += 0.01;
 	if (all->key.right == 1)
-		all->x1 -= 0.1;
+		all->x1 -= 0.01;
 	if (all->key.zoom_in == 1)
-		all->zoom += 1;
+		all->zoom += 50;
 	if (all->key.zoom_out == 1)
-		all->zoom -= 1;
+		all->zoom -= 50;
+	if (all->key.print == 1)
+	{
+		printf("zoom = %f\n", all->zoom);
+		printf("x1 = %f\n", all->x1);
+		printf("x2 = %f\n", all->x2);
+		printf("y1 = %f\n", all->y1);
+		printf("y2 = %f\n", all->y2);
+		printf("i_max = %d\n", all->i_max);
+	}
 	if (all->key.reset == 1)
 		ft_set_mandelbrot(all);
 	if (all->i_max < 10)
@@ -60,6 +69,8 @@ int	handle_keypress(int keysym, t_all *all)
 		all->key.zoom_out = 1;
 	if (keysym == XK_r)
 		all->key.reset = 1;
+	if (keysym == XK_p)
+		all->key.print = 1;
 	return (0);
 }
 
@@ -83,6 +94,12 @@ int	handle_keyrelease(int keysym, t_all *all)
 		all->key.zoom_out = 0;
 	if (keysym == XK_r)
 		all->key.reset = 0;
+	if (keysym == XK_p)
+		all->key.print = 0;
+	if (keysym == XK_c)
+		all->freq += 0.01;
+	if (keysym == XK_v)
+		all->freq -= 0.01;
 	return (0);
 }
 
@@ -95,17 +112,9 @@ int	handle_mouse(int button, int x, int y, t_all *all)
 	{
 		mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
 		all->x1 = (double)(((double)all->mouse_x * 2.7) / all->img_x - 2.1);
-	//	if (all->x1 < -2.1)
-	//		all->x1 = -2.1;
 		all->x2 = (double)(((double)all->mouse_x * 2.7) /  all->img_x + 0.6);
-	//	if (all->x2 < 0.6)
-	//			all->x2 = 0.6;
 		all->y1 = (double)(((double)all->mouse_y * 2.4) / all->img_y - 1.2);
-	//	if (all->y1 < -1.2)
-	//			all->y1 = -1.2;
 		all->y2 = (double)(((double)all->mouse_y * 2.4) / all->img_y + 0.6);
-	//	if (all->y2 > 1.2)
-	//			all->y2 = 1.2;
 		all->zoom += 1.5;
 	}
 
@@ -113,24 +122,15 @@ int	handle_mouse(int button, int x, int y, t_all *all)
 	{
 		mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
 		all->x1 = (double)(((double)all->mouse_x * 2.7) /  all->img_x - 2.1);
-	//	if (all->x1 < -2.1)
-	//		all->x1 = -2.1;
 		all->x2 = (double)(((double)all->mouse_x * 2.7) / all->img_x + 0.6);
-	//	if (all->x2 < 0.6)
-	//			all->x2 = 0.6;
 		all->y1 = (double)(((double)all->mouse_y * 2.4) / all->img_y - 1.2);
-	//	if (all->y1 < -1.2)
-	//			all->y1 = -1.2;
 		all->y2 = (double)(((double)all->mouse_y * 2.4) / all->img_y + 0.6);
-	//	if (all->y2 > 1.2)
-	//			all->y2 = 1.2;
 		all->zoom -= 1.5;
 	}
 	if (all->i_max <= 0)
 		all->i_max = 1;
 	if (all->zoom <= 0)
 		all->zoom = 1;
-	printf("zoom = %f, i_max = %d\n", all->zoom, all->i_max);
 	return (0);
 }
 
