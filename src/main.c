@@ -16,7 +16,10 @@ static int	mandelbrot_render(t_all *all)
 {
 	if (all->win_ptr == NULL)
 		return (check_error(all, MLX_ERROR));
-	ft_mandelbrot(all);
+	ft_reload_img(all);
+	ft_background(all);
+	ft_mandelbrot(all, -1, -1, 0);
+	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->img.mlx_img, 0, 0);
 	ft_control(all);
 	return (0);
 }
@@ -25,7 +28,10 @@ static int	julia_render(t_all *all)
 {
 	if (all->win_ptr == NULL)
 		return (check_error(all, MLX_ERROR));
-	ft_julia(all);
+	ft_reload_img(all);
+	ft_background(all);
+	ft_julia(all, -1, -1, 0);
+	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->img.mlx_img, 0, 0);
 	ft_control(all);
 	return (0);
 }

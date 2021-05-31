@@ -39,7 +39,7 @@ UTILS_FT		= mlx_utils error free
 
 PARSING_FT		= args
 
-SRC_FT 			= main mandelbrot julia control set_vars
+SRC_FT 			= main mandelbrot julia control set_vars color
 
 ## List of Utilities
 

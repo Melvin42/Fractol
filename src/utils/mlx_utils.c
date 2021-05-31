@@ -12,9 +12,12 @@
 
 #include "../../inc/fractol.h"
 
-int	encode_rgb(int red, int green, int blue)
+void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	return (red << 16 | green << 8 | blue);
+	char	*pixel;
+
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int *)pixel = color;
 }
 
 void	ft_background(t_all *all)
@@ -31,14 +34,6 @@ void	ft_background(t_all *all)
 	}
 }
 
-void	img_pix_put(t_img *img, int x, int y, int color)
-{
-	char	*pixel;
-
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
-}
-
 int	ft_new_mlx_img(t_all *all, t_img *img, int res_x, int res_y)
 {
 	img->mlx_img = mlx_new_image(all->mlx_ptr, res_x, res_y);
@@ -47,6 +42,15 @@ int	ft_new_mlx_img(t_all *all, t_img *img, int res_x, int res_y)
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 			&img->line_len, &img->endian);
 	if (img->addr == NULL)
+		return (check_error(all, MLX_ERROR));
+	return (0);
+}
+
+int	ft_reload_img(t_all *all)
+{
+	if (all->img.mlx_img)
+		mlx_destroy_image(all->mlx_ptr, all->img.mlx_img);
+	if (ft_new_mlx_img(all, &all->img, all->rx, all->ry) < 0)
 		return (check_error(all, MLX_ERROR));
 	return (0);
 }

@@ -14,7 +14,7 @@ void	ft_set_mandelbrot(t_all *all)
 void	ft_set_julia(t_all *all)
 {
 	all->x1 = -1;
-	all->x2 = 2;
+	all->x2 = 1;
 	all->y1 = -1.2;
 	all->y2 = 1.2;
 	all->freq = 0.33;

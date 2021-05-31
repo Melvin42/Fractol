@@ -86,6 +86,7 @@ typedef struct s_all
 	int			r;
 	int			g;
 	int			b;
+	int			color;
 	int			mouse_x;
 	int			mouse_y;
 	int			put_x;
@@ -123,8 +124,8 @@ void			ft_help_args(void);
 ********************************************************************************
 */
 
-int				ft_mandelbrot(t_all *all);
-int				ft_julia(t_all *all);
+void			ft_mandelbrot(t_all *all, int x, int y, int i);
+void			ft_julia(t_all *all, int x, int y, int i);
 void			ft_set_mandelbrot(t_all *all);
 void			ft_set_julia(t_all *all);
 
@@ -137,7 +138,10 @@ void			ft_set_julia(t_all *all);
 void			img_pix_put(t_img *img, int x, int y, int color);
 void			ft_background(t_all *all);
 int				ft_new_mlx_img(t_all *all, t_img *img, int res_x, int res_y);
+int				ft_reload_img(t_all *all);
+
 int				encode_rgb(int red, int green, int blue);
+void			ft_choose_color(t_all *all, int i);
 
 int				check_error(t_all *all, int error);
 void			ft_free_all(t_all *all);
