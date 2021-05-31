@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:03:25 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/31 20:58:59 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/31 21:49:54 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	mandelbrot_render(t_all *all)
 {
-//	if (all->win_ptr == NULL)
-//		return (check_error(all, MLX_ERROR));
+	if (all->win_ptr == NULL)
+		return (check_error(all, MLX_ERROR));
 	ft_reload_img(all);
 	ft_background(all);
 	ft_mandelbrot(all, -1, -1, 0);
