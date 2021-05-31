@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/30 21:22:33 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/31 20:59:39 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ typedef struct s_all
 	int			img_y;
 	int			flag_start;
 	int			i_max;
+	int			x_dragon;
+	int			y_dragon;
 	double		angle;
 	double		freq;
-	double		x;
-	double		y;
 	double		x1;
 	double		x2;
 	double		y1;
@@ -163,6 +163,7 @@ void			ft_free_all(t_all *all);
 */
 
 void			ft_control(t_all *all);
+void			ft_control_dragon_curve(t_all *all);
 
 int				handle_keypress(int keysym, t_all *all);
 int				handle_keyrelease(int keysym, t_all *all);

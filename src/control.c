@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/30 22:07:46 by melperri         ###   ########.fr       */
+/*   Updated: 2021/05/31 21:02:21 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,34 @@ void	ft_control(t_all *all)
 		ft_set_mandelbrot(all);
 	if (all->i_max < 10)
 		all->i_max = 10;
+}
+
+void	ft_control_dragon_curve(t_all *all)
+{
+	if (all->key.escape == 1)
+		ft_exit(all);
+	if (all->key.plus == 1)
+		all->i_max += 1;
+	if (all->key.minus == 1)
+		all->i_max -= 1;
+	if (all->key.up == 1)
+		all->y_dragon -= 1;// * all->zoom;
+	if (all->key.down == 1)
+		all->y_dragon += 1;// * all->zoom;
+	if (all->key.left == 1)
+		all->x_dragon -= 1;//* all->zoom;
+	if (all->key.right == 1)
+		all->x_dragon += 1;//* all->zoom;
+	if (all->key.zoom_in == 1)
+		all->zoom += 1;
+	if (all->key.zoom_out == 1)
+		all->zoom -= 1;
+	if (all->key.print == 1)
+		ft_print_vars(all);
+	if (all->key.reset == 1)
+		ft_set_mandelbrot(all);
+	if (all->i_max < 1)
+		all->i_max = 1;
 }
 
 int	handle_keypress(int keysym, t_all *all)

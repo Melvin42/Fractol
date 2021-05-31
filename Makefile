@@ -23,7 +23,7 @@ PARSING_DIR	= parsing
 
 ## Compilating Utilities
 
-FAST = -Ofast
+#FAST = -Ofast
 
 #DEBUG = -g3 #-fsanitize=address
 
