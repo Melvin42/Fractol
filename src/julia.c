@@ -19,10 +19,8 @@ void	ft_julia(t_all *all, int x, int y, int i)
 		y = -1;
 		while (++y < all->ry)
 		{
-			all->c_r = 0.285;
-			all->c_i = 0.01;
-			all->z_r = (double)x / all->zoom + all->x1;
-			all->z_i = (double)y / all->zoom + all->y1;
+			all->z_r = (double)x / (double)all->zoom + all->x1;
+			all->z_i = (double)y / (double)all->zoom + all->y1;
 			i = 0;
 			while (all->z_r * all->z_r + all->z_i * all->z_i < 4 && i < all->i_max)
 			{

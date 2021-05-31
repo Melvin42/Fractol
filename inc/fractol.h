@@ -20,6 +20,7 @@
 #include <X11/keysymdef.h>
 #include <X11/X.h>
 #include <math.h>
+#include <stdint.h>
 
 /*
 ********************************************************************************
@@ -95,11 +96,16 @@ typedef struct s_all
 	int			img_y;
 	int			flag_start;
 	int			i_max;
+	double		angle;
 	double		freq;
+	double		x;
+	double		y;
 	double		x1;
 	double		x2;
 	double		y1;
 	double		y2;
+	double		x_mid;
+	double		y_mid;
 	double		zoom;
 	double		tmp;
 	double		c_r;
@@ -126,8 +132,12 @@ void			ft_help_args(void);
 
 void			ft_mandelbrot(t_all *all, int x, int y, int i);
 void			ft_julia(t_all *all, int x, int y, int i);
+void			ft_dragon_curve(t_all *all);
 void			ft_set_mandelbrot(t_all *all);
-void			ft_set_julia(t_all *all);
+void			ft_set_julia_one(t_all *all);
+void			ft_set_julia_two(t_all *all);
+void			ft_set_julia_three(t_all *all);
+void			ft_set_dragon(t_all *all);
 
 /*
 ********************************************************************************
@@ -158,6 +168,7 @@ int				handle_keypress(int keysym, t_all *all);
 int				handle_keyrelease(int keysym, t_all *all);
 int				handle_mouse_mandelbrot(int button, int x, int y, t_all *all);
 int				handle_mouse_julia(int button, int x, int y, t_all *all);
+int				handle_mouse_dragon(int button, int x, int y, t_all *all);
 int				ft_exit(t_all *all);
 
 #endif

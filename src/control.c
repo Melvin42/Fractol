@@ -14,13 +14,17 @@
 
 static void	ft_print_vars(t_all *all)
 {
-	printf("zoom = %f\n", all->zoom);
-	printf("x1 = %f\n", all->x1);
-	printf("x2 = %f\n", all->x2);
-	printf("y1 = %f\n", all->y1);
-	printf("y2 = %f\n", all->y2);
-	printf("freq = %f\n", all->freq);
-	printf("i_max = %d\n", all->i_max);
+	printf("           zoom = %f\n", all->zoom);
+	printf("          X min = %f\n", all->x1);
+	printf("          X max = %f\n", all->x2);
+	printf("          Y min = %f\n", all->y1);
+	printf("          Y max = %f\n", all->y2);
+	printf("         Z real = %f\n", all->z_r);
+	printf("    Z imaginary = %f\n", all->z_i);
+	printf("         C real = %f\n", all->c_r);
+	printf("    C imaginary = %f\n", all->c_i);
+	printf("color frequency = %f\n", all->freq);
+	printf("  iteration max = %d\n", all->i_max);
 }
 
 void	ft_control(t_all *all)
@@ -32,17 +36,17 @@ void	ft_control(t_all *all)
 	if (all->key.minus == 1)
 		all->i_max -= 1;
 	if (all->key.up == 1)
-		all->y1 += 0.01;
+		all->y1 += 0.0008 * all->zoom;
 	if (all->key.down == 1)
-		all->y1 -= 0.01;
+		all->y1 -= 0.0008 * all->zoom;
 	if (all->key.left == 1)
-		all->x1 += 0.01;
+		all->x1 += 0.0008 * all->zoom;
 	if (all->key.right == 1)
-		all->x1 -= 0.01;
+		all->x1 -= 0.0008 * all->zoom;
 	if (all->key.zoom_in == 1)
-		all->zoom += 50;
+		all->zoom += 0.24 * all->zoom;
 	if (all->key.zoom_out == 1)
-		all->zoom -= 50;
+		all->zoom -= 0.24 * all->zoom;
 	if (all->key.print == 1)
 		ft_print_vars(all);
 	if (all->key.reset == 1)
@@ -123,9 +127,9 @@ int	handle_mouse_mandelbrot(int button, int x, int y, t_all *all)
 
 	ft_mouse_coordinate_mandelbrot(all);
 	if (button == Button5)
-		all->zoom += 1.5;
+		all->zoom += 0.24 * all->zoom;
 	if (button == Button4)
-		all->zoom -= 1.5;
+		all->zoom -= 0.24 * all->zoom;
 	if (all->zoom <= 0)
 		all->zoom = 1;
 	return (0);
@@ -146,6 +150,30 @@ int	handle_mouse_julia(int button, int x, int y, t_all *all)
 	(void)y;
 
 	ft_mouse_coordinate_julia(all);
+	if (button == Button5)
+		all->zoom += 1.5;
+	if (button == Button4)
+		all->zoom -= 1.5;
+	if (all->zoom <= 0)
+		all->zoom = 1;
+	return (0);
+}
+
+static void	ft_mouse_coordinate_dragon(t_all *all)
+{
+	mlx_mouse_get_pos(all->mlx_ptr, all->win_ptr, &all->mouse_x, &all->mouse_y);
+	all->x1 = (double)(((double)all->mouse_x * 2.0) / all->rx - 1.0);
+	all->x2 = (double)(((double)all->mouse_x * 2.0) /  all->rx + 1.0);
+	all->y1 = (double)(((double)all->mouse_y * 2.4) / all->ry - 1.2);
+	all->y2 = (double)(((double)all->mouse_y * 2.4) / all->ry + 1.2);
+}
+
+int	handle_mouse_dragon(int button, int x, int y, t_all *all)
+{
+	(void)x;
+	(void)y;
+
+	ft_mouse_coordinate_dragon(all);
 	if (button == Button5)
 		all->zoom += 1.5;
 	if (button == Button4)

@@ -21,6 +21,8 @@ void	ft_mandelbrot(t_all *all, int x, int y, int i)
 		{
 			all->c_r = (double)x / all->zoom + all->x1;
 			all->c_i = (double)y / all->zoom + all->y1;
+			//all->c_r = (double)x / all->zoom + all->x_mid;
+			//all->c_i = (double)y / all->zoom + all->y_mid;
 			all->z_r = 0;
 			all->z_i = 0;
 			i = 0;

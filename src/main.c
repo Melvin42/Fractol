@@ -36,6 +36,18 @@ static int	julia_render(t_all *all)
 	return (0);
 }
 
+static int	dragon_render(t_all *all)
+{
+	if (all->win_ptr == NULL)
+		return (check_error(all, MLX_ERROR));
+	ft_reload_img(all);
+	ft_background(all);
+	ft_dragon_curve(all);
+	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->img.mlx_img, 0, 0);
+	ft_control(all);
+	return (0);
+}
+
 static void	ft_mandelbrot_loop(t_all *all)
 {
 	mlx_loop_hook(all->mlx_ptr, &mandelbrot_render, all);
@@ -60,6 +72,19 @@ static void	ft_julia_loop(t_all *all)
 	mlx_loop(all->mlx_ptr);
 }
 
+static void	ft_dragon_loop(t_all *all)
+{
+//	dragon_render(all);
+	mlx_loop_hook(all->mlx_ptr, &dragon_render, all);
+	mlx_hook(all->win_ptr, ClientMessage, StructureNotifyMask,
+		&ft_exit, all);
+	mlx_hook(all->win_ptr, FocusIn, FocusChangeMask, &dragon_render, all);
+	mlx_hook(all->win_ptr, KeyPress, KeyPressMask, &handle_keypress, all);
+	mlx_hook(all->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, all);
+	mlx_mouse_hook(all->win_ptr, &handle_mouse_dragon, all);
+	mlx_loop(all->mlx_ptr);
+}
+
 static int	ft_init_mlx(t_all *all)
 {
 	all->mlx_ptr = mlx_init();
@@ -68,6 +93,56 @@ static int	ft_init_mlx(t_all *all)
 	all->win_ptr = mlx_new_window(all->mlx_ptr, all->rx, all->ry, "fractol");
 	if (all->win_ptr == NULL)
 		return (check_error(all, MLX_ERROR));
+	return (0);
+}
+
+static int	ft_launch(t_all *all)
+{
+	ft_memset(all, 0, sizeof(*all));
+	all->rx = 1600;
+	all->ry = 1600;
+	if (ft_init_mlx(all) < 0)
+		return (-1);
+	return (0);
+}
+
+static int ft_choose_fractal(t_all *all, char *av)
+{
+	if (ft_strncmp(av, "-Mandelbrot", 11) == 0)
+	{
+		if (ft_launch(all) < 0)
+			return (-1);
+		ft_set_mandelbrot(all);
+		ft_mandelbrot_loop(all);
+	}
+	else if (ft_strncmp(av, "-Julia1", 7) == 0)
+	{
+		if (ft_launch(all) < 0)
+			return (-1);
+		ft_set_julia_one(all);
+		ft_julia_loop(all);
+	}
+	else if (ft_strncmp(av, "-Julia2", 7) == 0)
+	{
+		if (ft_launch(all) < 0)
+			return (-1);
+		ft_set_julia_two(all);
+		ft_julia_loop(all);
+	}
+	else if (ft_strncmp(av, "-Julia3", 7) == 0)
+	{
+		if (ft_launch(all) < 0)
+			return (-1);
+		ft_set_julia_three(all);
+		ft_julia_loop(all);
+	}
+	else if (ft_strncmp(av, "-Dragon_curve", 13) == 0)
+	{
+		if (ft_launch(all) < 0)
+			return (-1);
+		ft_set_dragon(all);
+		ft_dragon_loop(all);
+	}
 	return (0);
 }
 
@@ -80,19 +155,12 @@ int	main(int ac, char **av)
 		ft_help_args();
 		return (0);
 	}
-	ft_memset(&all, 0, sizeof(all));
-	all.rx = 800;
-	all.ry = 600;
-	ft_init_mlx(&all);
-	if (ft_strncmp(av[1], "-Mandelbrot", 11) == 0)
+	else 
 	{
-		ft_set_mandelbrot(&all);
-		ft_mandelbrot_loop(&all);
-	}
-	else if (ft_strncmp(av[1], "-Julia", 6) == 0)
-	{
-		ft_set_julia(&all);
-		ft_julia_loop(&all);
+		if (ft_choose_fractal(&all, av[1]) < 0)
+			return (-1);
+		else
+			ft_help_args();
 	}
 	return (0);
 }

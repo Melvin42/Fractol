@@ -14,7 +14,12 @@
 
 void	ft_help_args(void)
 {
-	printf("How to use : Fractol program need a single argument\n\n");
-	printf("  -Julia%25s\n", "Julia's fractal");
-	printf("  -Mandelbrot%25s\n", "Mandelbrot's fractal");
+	printf("How to use :\n\n\tFractol program need a single argument\n\n");
+	printf("\t  -Mandelbrot%25s\n\n", "Mandelbrot's fractal");
+	printf("\tYou can choose three different Julia's fractal set\n\n");
+	printf("\t  -Julia1%18s\n", "first set");
+	printf("\t  -Julia2%19s\n", "second set");
+	printf("\t  -Julia3%18s\n\n", "third set");
+	printf("\tBonus :\n\n");
+	printf("\t  -Last%18s\n", "Last's fractal");
 }
