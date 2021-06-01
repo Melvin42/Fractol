@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/31 20:59:39 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/01 12:13:07 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_all
 	int			i_max;
 	int			x_dragon;
 	int			y_dragon;
+	int			n_color;
 	double		angle;
 	double		freq;
 	double		x1;

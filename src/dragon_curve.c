@@ -4,10 +4,11 @@
 ** set turtle posistion
 */
 
-static void	ft_turtle(t_all *all, int x, int y)
+static void	ft_turtle(t_all *all, int x, int y, int n)
 {
 	all->x1 = x;
 	all->y1 = y;
+	all->n_color = n;
 }
 
 /*
@@ -32,28 +33,32 @@ static void	ft_forward(t_all *all, int d)
 	//printf("x1 = %f x2 = %f\ny1 = %f y2 = %f\n\n", all->x1, all->x2, all->y1, all->y2);
 	all->put_x = round(all->x1); 
 	all->put_y = round(all->y1);
-	if (all->put_x < (int)all->x2 && (int)all->x2 < all->rx)
+	if (all->put_x < (int)all->x2)// && ((int)all->x2 > 0 && (int)all->x2 < all->rx))
 	{
-		while (all->put_x <= (int)all->x2 && (all->put_x >= 0 && all->put_x <= all->rx)
-			&& (all->put_y >= 0 && all->put_y <= all->ry))
+		while (all->put_x <= (int)all->x2
+			&& (all->put_x > 0 && all->put_x < all->rx)
+			&& (all->put_y > 0 && all->put_y < all->ry))
 			img_pix_put(&all->img, all->put_x++, all->put_y, all->color);
 	}
-	else if (all->put_x > (int)all->x2 && (int)all->x2 > 0)
+	else if (all->put_x > (int)all->x2)// && ((int)all->x2 > 0 && (int)all->x2 < all->rx))
 	{
-		while (all->put_x >= (int)all->x2 && (all->put_x >= 0 && all->put_x <= all->rx)
-			&& (all->put_y >= 0 && all->put_y <= all->ry))
+		while (all->put_x >= (int)all->x2
+			&& (all->put_x > 0 && all->put_x < all->rx)
+			&& (all->put_y > 0 && all->put_y < all->ry))
 			img_pix_put(&all->img, all->put_x--, all->put_y, all->color);
 	}
-	else if (all->put_y > (int)all->y2 && (int)all->y2 > 0)
+	else if (all->put_y > (int)all->y2)// && ((int)all->y2 > 0 && (int)all->y2 < all->ry))
 	{
-		while (all->put_y >= (int)all->y2 && (all->put_y >= 0 && all->put_y <= all->ry)
-			&& (all->put_x >= 0 && all->put_y <= all->rx))
+		while (all->put_y >= (int)all->y2
+			&& (all->put_y > 0 && all->put_y < all->ry)
+			&& (all->put_x > 0 && all->put_x < all->rx))
 			img_pix_put(&all->img, all->put_x, all->put_y--, all->color);
 	}
-	else if (all->put_y < (int)all->y2 && (int)all->y2 < all->ry)
+	else if (all->put_y < (int)all->y2)// && ((int)all->y2 > 0 && (int)all->y2 < all->ry))
 	{
-		while (all->put_y <= (int)all->y2 && (all->put_y >= 0 && all->put_y <= all->ry)
-			&& (all->put_x >= 0 && all->put_y <= all->rx))
+		while (all->put_y <= (int)all->y2
+			&& (all->put_y > 0 && all->put_y < all->ry)
+			&& (all->put_x > 0 && all->put_x < all->rx))
 			img_pix_put(&all->img, all->put_x, all->put_y++, all->color);
 	}
 	all->x1 = all->x2;
@@ -69,7 +74,7 @@ static void	ft_recursive_dragon(t_all *all, int n, int vz)
 {
 	if (n == 0)
 	{
-		ft_choose_color(all, n);
+		ft_choose_color(all, all->n_color);
 		ft_forward(all, all->zoom);
 	}
 	else
@@ -78,11 +83,12 @@ static void	ft_recursive_dragon(t_all *all, int n, int vz)
 		ft_change_angle(all, vz * 90);
 		ft_recursive_dragon(all, n - 1, -1);
 	}
+	all->n_color++;
 }
 
 void	ft_dragon_curve(t_all *all)
 {
-	ft_turtle(all, all->x_dragon, all->y_dragon);
+	ft_turtle(all, all->x_dragon, all->y_dragon, 0);
 	ft_cap(all, 0);
 	ft_recursive_dragon(all, all->i_max, 1);
 }
