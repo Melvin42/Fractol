@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:03:25 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 17:40:41 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 21:11:41 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	ft_init_mlx(t_all *all)
 int	ft_launch(t_all *all)
 {
 	ft_memset(all, 0, sizeof(*all));
-	all->rx = 400;
-	all->ry = 400;
+	all->rx = 500;
+	all->ry = 500;
 	if (ft_init_mlx(all) < 0)
 		return (-1);
 	return (0);
@@ -38,6 +38,11 @@ static int	ft_choose_fractal_part_two(t_all *all, char *av)
 	if (ft_strncmp(av, "-Dragon_curve", 13) == 0 && ft_strlen(av) == 13)
 	{
 		if (ft_launch_dragon_curve(all) < 0)
+			return (-1);
+	}
+	if (ft_strncmp(av, "-Burning_ship", 13) == 0 && ft_strlen(av) == 13)
+	{
+		if (ft_launch_bship(all) < 0)
 			return (-1);
 	}
 	return (0);

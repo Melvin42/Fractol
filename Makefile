@@ -23,7 +23,7 @@ PARSING_DIR	= parsing
 
 ## Compilating Utilities
 
-#FAST = -Ofast
+FAST = -Ofast
 
 #DEBUG = -g3 #-fsanitize=address
 
@@ -39,7 +39,7 @@ UTILS_FT		= mlx_utils error free
 
 PARSING_FT		= args
 
-SRC_FT 			= main mandelbrot julia dragon_curve \
+SRC_FT 			= main mandelbrot julia dragon_curve bship\
 				  control mouse_control mouse_pos print_vars \
 				  launch set_vars color renders loops
 

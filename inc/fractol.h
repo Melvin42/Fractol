@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 16:01:03 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 21:13:10 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,24 +138,29 @@ int				ft_launch_julia_one(t_all *all);
 int				ft_launch_julia_two(t_all *all);
 int				ft_launch_julia_three(t_all *all);
 int				ft_launch_dragon_curve(t_all *all);
+int				ft_launch_bship(t_all *all);
 
 void			ft_set_mandelbrot(t_all *all);
 void			ft_set_julia_one(t_all *all);
 void			ft_set_julia_two(t_all *all);
 void			ft_set_julia_three(t_all *all);
 void			ft_set_dragon(t_all *all);
+void			ft_set_bship(t_all *all);
 
 void			ft_mandelbrot(t_all *all, int x, int y, int i);
 void			ft_julia(t_all *all, int x, int y, int i);
 void			ft_dragon_curve(t_all *all);
+void			ft_bship(t_all *all, int x, int y, int i);
 
 void			ft_mandelbrot_loop(t_all *all);
 void			ft_julia_loop(t_all *all);
 void			ft_dragon_loop(t_all *all);
+void			ft_bship_loop(t_all *all);
 
 int				mandelbrot_render(t_all *all);
 int				julia_render(t_all *all);
 int				dragon_render(t_all *all);
+int				bship_render(t_all *all);
 
 /*
 ********************************************************************************
@@ -191,10 +196,12 @@ int				handle_keyrelease(int keysym, t_all *all);
 
 int				handle_mouse_mandelbrot(int button, int x, int y, t_all *all);
 int				handle_mouse_julia(int button, int x, int y, t_all *all);
+int				handle_mouse_bship(int button, int x, int y, t_all *all);
 int				handle_mouse_dragon(int button, int x, int y, t_all *all);
 
 void			ft_mouse_coordinate_mandelbrot(t_all *all);
 void			ft_mouse_coordinate_julia(t_all *all);
+void			ft_mouse_coordinate_bship(t_all *all);
 void			ft_mouse_coordinate_dragon(t_all *all);
 
 int				ft_exit(t_all *all);
