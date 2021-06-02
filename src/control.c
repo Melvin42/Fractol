@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 15:26:07 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 19:29:28 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,25 @@ void	ft_control(t_all *all)
 	if (all->key.minus == 1)
 		all->i_max -= 1;
 	if (all->key.up == 1)
-		all->y1 -= 0.005 * all->zoom / 100;
+		all->y1 -= 20 / all->zoom;
 	if (all->key.down == 1)
-		all->y1 += 0.005 * all->zoom / 100;
+		all->y1 += 20 / all->zoom;
 	if (all->key.left == 1)
-		all->x1 -= 0.005 * all->zoom / 100;
+		all->x1 -= 20 / all->zoom;
 	if (all->key.right == 1)
-		all->x1 += 0.005 * all->zoom / 100;
+		all->x1 += 20 / all->zoom;
 	if (all->key.zoom_in == 1)
-		all->zoom += 0.24 * all->zoom;
+	{
+		all->zoom += 0.15 * all->zoom;
+		all->x1 += 15 / all->zoom;
+		all->y1 += 15 / all->zoom;
+	}
 	if (all->key.zoom_out == 1)
-		all->zoom -= 0.24 * all->zoom;
+	{
+		all->zoom -= 0.15 * all->zoom;
+		all->x1 += 0.15 / all->zoom;
+		all->y1 += 0.15 / all->zoom;
+	}
 	if (all->key.print == 1)
 		ft_print_vars(all);
 	if (all->key.reset == 1)

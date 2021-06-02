@@ -7,10 +7,10 @@
 
 void	ft_set_mandelbrot(t_all *all)
 {
-	all->x1 = -2.1;
-	all->x2 = 0.6;
-	all->y1 = -1.2;
-	all->y2 = 1.2;
+	all->x1 = -2.0;
+	all->x2 = 2.0;
+	all->y1 = -1.25;
+	all->y2 = 1.25;
 	all->freq = 0.66;
 	all->zoom = 100;
 	all->i_max = 25;
