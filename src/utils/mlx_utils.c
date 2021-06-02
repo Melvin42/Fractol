@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:14:37 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/30 21:21:55 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 15:28:04 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 void	ft_background(t_all *all)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y <= all->img.res_y)
 	{
 		x = -1;
-		while  (++x <= all->img.res_x)
+		while (++x <= all->img.res_x)
 			img_pix_put(&all->img, x, y, BLACK_PIX);
 	}
 }

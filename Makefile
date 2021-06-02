@@ -39,7 +39,9 @@ UTILS_FT		= mlx_utils error free
 
 PARSING_FT		= args
 
-SRC_FT 			= main mandelbrot julia dragon_curve control set_vars color
+SRC_FT 			= main mandelbrot julia dragon_curve \
+				  control mouse_control mouse_pos print_vars \
+				  launch set_vars color renders loops
 
 ## List of Utilities
 
