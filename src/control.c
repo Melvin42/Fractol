@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/01 11:48:59 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 14:04:11 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 static void	ft_print_vars(t_all *all)
 {
 	printf("           zoom = %f\n", all->zoom);
+	printf("          X min = %f\n", all->x1);
+	printf("          X max = %f\n", all->x2);
+	printf("          Y min = %f\n", all->y1);
+	printf("          Y max = %f\n", all->y2);
+	printf("         Z real = %f\n", all->z_r);
+	printf("    Z imaginary = %f\n", all->z_i);
+	printf("         C real = %f\n", all->c_r);
+	printf("    C imaginary = %f\n", all->c_i);
+	printf("color frequency = %f\n", all->freq);
+	printf("  iteration max = %d\n", all->i_max);
+}
+
+static void	ft_print_vars_dragon(t_all *all)
+{
+	printf("           zoom = %f\n", all->zoom);
+	printf("              X = %d\n", all->x_dragon);
+	printf("              Y = %d\n", all->y_dragon);
 	printf("          X min = %f\n", all->x1);
 	printf("          X max = %f\n", all->x2);
 	printf("          Y min = %f\n", all->y1);
@@ -36,13 +53,13 @@ void	ft_control(t_all *all)
 	if (all->key.minus == 1)
 		all->i_max -= 1;
 	if (all->key.up == 1)
-		all->y1 += 0.0008 * all->zoom;
+		all->y1 -= 0.005 * all->zoom / 100;
 	if (all->key.down == 1)
-		all->y1 -= 0.0008 * all->zoom;
+		all->y1 += 0.005 * all->zoom / 100;
 	if (all->key.left == 1)
-		all->x1 += 0.0008 * all->zoom;
+		all->x1 -= 0.005 * all->zoom / 100;
 	if (all->key.right == 1)
-		all->x1 -= 0.0008 * all->zoom;
+		all->x1 += 0.005 * all->zoom / 100;
 	if (all->key.zoom_in == 1)
 		all->zoom += 0.24 * all->zoom;
 	if (all->key.zoom_out == 1)
@@ -63,22 +80,28 @@ void	ft_control_dragon_curve(t_all *all)
 		all->i_max += 1;
 	if (all->key.minus == 1)
 		all->i_max -= 1;
+	if (all->i_max < 1)
+		all->i_max = 1;
+	if (all->i_max > 18)
+		all->i_max = 18;
 	if (all->key.up == 1)
-		all->y_dragon -= 1;// * all->zoom;
+		all->y_dragon -= ceil(3 * all->zoom / 15);
 	if (all->key.down == 1)
-		all->y_dragon += 1;// * all->zoom;
+		all->y_dragon += ceil(3 * all->zoom / 15);
 	if (all->key.left == 1)
-		all->x_dragon -= 1;//* all->zoom;
+		all->x_dragon -= ceil(3 * all->zoom / 15);
 	if (all->key.right == 1)
-		all->x_dragon += 1;//* all->zoom;
+		all->x_dragon += ceil(3 * all->zoom / 15);
 	if (all->key.zoom_in == 1)
 		all->zoom += 1;
 	if (all->key.zoom_out == 1)
 		all->zoom -= 1;
+	if (all->zoom < 1)
+		all->zoom = 1;
 	if (all->key.print == 1)
-		ft_print_vars(all);
+		ft_print_vars_dragon(all);
 	if (all->key.reset == 1)
-		ft_set_mandelbrot(all);
+		ft_set_dragon(all);
 	if (all->i_max < 1)
 		all->i_max = 1;
 }

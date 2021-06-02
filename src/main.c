@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:03:25 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/31 21:49:54 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/02 12:05:51 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ static int	ft_init_mlx(t_all *all)
 static int	ft_launch(t_all *all)
 {
 	ft_memset(all, 0, sizeof(*all));
-	all->rx = 1600;
-	all->ry = 1600;
+	all->rx = 800;
+	all->ry = 600;
 	if (ft_init_mlx(all) < 0)
 		return (-1);
 	return (0);

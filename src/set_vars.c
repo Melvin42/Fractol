@@ -55,12 +55,9 @@ void	ft_set_julia_three(t_all *all)
 void	ft_set_dragon(t_all *all)
 {
 	all->x_dragon = 300;
-//	all->x2 = 600;
-	all->y_dragon = 600;
-//	all->y2 = 1.2;
-//	all->c_r = -0.8;
-//	all->c_i = 0.156;
+	all->y_dragon = 400;
 	all->freq = 0.33;
-	all->zoom = 15;
+	all->zoom = 10;
 	all->i_max = 10;
+	all->n_color = 0;
 }
