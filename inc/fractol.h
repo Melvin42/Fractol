@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 13:18:14 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 14:54:32 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ typedef struct s_key
 	int			right;
 	int			plus;
 	int			minus;
+	int			c_r_plus;
+	int			c_r_moins;
+	int			c_i_plus;
+	int			c_i_moins;
 	int			zoom_in;
 	int			zoom_out;
 	int			reset;

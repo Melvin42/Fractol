@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 13:21:33 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 15:16:56 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,42 @@ static void	ft_reset(t_all *all)
 		ft_set_julia_three(all);
 	else if (all->fractal == BSHIP)
 		ft_set_bship(all);
+}
+
+static void	ft_change_constant(t_all *all)
+{
+	if (all->key.c_r_moins == 1)
+		all->c_r -= 0.01;
+	if (all->key.c_r_plus == 1)
+		all->c_r += 0.01;
+	if (all->key.c_i_moins == 1)
+		all->c_i -= 0.01;
+	if (all->key.c_i_plus == 1)
+		all->c_i += 0.01;
+}
+
+static void	ft_change_constant_press(int keysym, t_all *all)
+{
+	if (keysym == XK_h)
+		all->key.c_r_moins = 1;
+	if (keysym == XK_j)
+		all->key.c_r_plus = 1;
+	if (keysym == XK_k)
+		all->key.c_i_moins = 1;
+	if (keysym == XK_l)
+		all->key.c_i_plus = 1;
+}
+
+static void	ft_change_constant_release(int keysym, t_all *all)
+{
+	if (keysym == XK_h)
+		all->key.c_r_moins = 0;
+	if (keysym == XK_j)
+		all->key.c_r_plus = 0;
+	if (keysym == XK_k)
+		all->key.c_i_moins = 0;
+	if (keysym == XK_l)
+		all->key.c_i_plus = 0;
 }
 
 void	ft_control(t_all *all)
@@ -50,6 +86,7 @@ void	ft_control(t_all *all)
 		ft_print_vars(all);
 	if (all->key.reset == 1)
 		ft_reset(all);
+	ft_change_constant(all);
 }
 
 void	ft_control_dragon_curve(t_all *all)
@@ -102,6 +139,7 @@ int	handle_keypress(int keysym, t_all *all)
 		all->key.reset = 1;
 	if (keysym == XK_p)
 		all->key.print = 1;
+	ft_change_constant_press(keysym, all);
 	return (0);
 }
 
@@ -131,6 +169,7 @@ int	handle_keyrelease(int keysym, t_all *all)
 		all->freq += 0.01;
 	if (keysym == XK_v)
 		all->freq -= 0.01;
+	ft_change_constant_release(keysym, all);
 	return (0);
 }
 
