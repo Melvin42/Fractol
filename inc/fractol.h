@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 14:54:32 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:11:25 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_key
 	int			zoom_out;
 	int			reset;
 	int			print;
+	int			frequency;
 
 }	t_key;
 
@@ -196,6 +197,10 @@ void			ft_zoom_out(t_all *all);
 
 void			ft_control(t_all *all);
 void			ft_control_dragon_curve(t_all *all);
+
+void			ft_change_constant(t_all *all);
+void			ft_change_constant_press(int keysym, t_all *all);
+void			ft_change_constant_release(int keysym, t_all *all);
 
 void			ft_print_vars(t_all *all);
 void			ft_print_vars_dragon(t_all *all);

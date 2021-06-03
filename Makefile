@@ -27,7 +27,7 @@ PARSING_DIR	= parsing
 
 FAST = -Ofast
 
-#DEBUG = -g3 #-fsanitize=address
+#DEBUG = -g3 -fsanitize=address
 
 FLAGS = -Wall -Wextra -Werror $(FAST) $(DEBUG) -D_REENTRANT
 
@@ -41,7 +41,7 @@ UTILS_FT		= mlx_utils error free
 
 PARSING_FT		= args
 
-CONTROL_FT		= control zoom mouse_control print_vars
+CONTROL_FT		= control control_two change_constant zoom mouse_control print_vars
 
 FRACTALS_FT		= mandelbrot julia dragon_curve bship
 
