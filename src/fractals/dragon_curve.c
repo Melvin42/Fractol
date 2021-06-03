@@ -6,26 +6,30 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 13:46:34 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 15:31:48 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:50:12 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fractol.h"
+#include "../../inc/fractol.h"
 
-/*
-** set turtle posistion
-*/
-
-static void	ft_turtle(t_all *all, int x, int y, int n)
+void	ft_set_dragon(t_all *all)
 {
-	all->x1 = x;
-	all->y1 = y;
-	all->n_color = n;
+	all->x_dragon = 200;
+	all->y_dragon = 350;
+	all->freq = 0.33;
+	all->zoom = 8;
+	all->i_max = 10;
+	all->n_color = 0;
 }
 
-/*
-** Go forward in drawing
-*/
+int	ft_launch_dragon_curve(t_all *all)
+{
+	if (ft_launch(all) < 0)
+		return (-1);
+	ft_set_dragon(all);
+	ft_dragon_loop(all);
+	return (0);
+}
 
 static void	ft_forward(t_all *all, int d)
 {
@@ -75,7 +79,9 @@ static void	ft_recursive_dragon(t_all *all, int n, int vz)
 
 void	ft_dragon_curve(t_all *all)
 {
-	ft_turtle(all, all->x_dragon, all->y_dragon, 0);
+	all->x1 = all->x_dragon;
+	all->y1 = all->y_dragon;
+	all->n_color = 0;
 	all->angle = 0;
 	ft_recursive_dragon(all, all->i_max, 1);
 }

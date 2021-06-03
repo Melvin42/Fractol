@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 21:13:10 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 12:53:30 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,8 @@ typedef struct s_all
 	int			g;
 	int			b;
 	int			color;
-	int			mouse_x;
-	int			mouse_y;
 	int			put_x;
 	int			put_y;
-	int			img_x;
-	int			img_y;
-	int			flag_start;
 	int			i_max;
 	int			x_dragon;
 	int			y_dragon;
@@ -105,8 +100,6 @@ typedef struct s_all
 	double		x2;
 	double		y1;
 	double		y2;
-	double		x_mid;
-	double		y_mid;
 	double		zoom;
 	double		tmp;
 	double		c_r;
@@ -184,6 +177,8 @@ void			ft_free_all(t_all *all);
 **===============================> CONTROL <==================================**
 ********************************************************************************
 */
+void			ft_zoom_in(t_all *all);
+void			ft_zoom_out(t_all *all);
 
 void			ft_control(t_all *all);
 void			ft_control_dragon_curve(t_all *all);
@@ -198,11 +193,6 @@ int				handle_mouse_mandelbrot(int button, int x, int y, t_all *all);
 int				handle_mouse_julia(int button, int x, int y, t_all *all);
 int				handle_mouse_bship(int button, int x, int y, t_all *all);
 int				handle_mouse_dragon(int button, int x, int y, t_all *all);
-
-void			ft_mouse_coordinate_mandelbrot(t_all *all);
-void			ft_mouse_coordinate_julia(t_all *all);
-void			ft_mouse_coordinate_bship(t_all *all);
-void			ft_mouse_coordinate_dragon(t_all *all);
 
 int				ft_exit(t_all *all);
 

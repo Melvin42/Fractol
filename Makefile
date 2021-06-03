@@ -18,6 +18,8 @@ SRC_DIR	= src
 
 # Add dirs here
 
+CONTROL_DIR	= control
+FRACTALS_DIR= fractals
 UTILS_DIR	= utils
 PARSING_DIR	= parsing
 
@@ -39,21 +41,27 @@ UTILS_FT		= mlx_utils error free
 
 PARSING_FT		= args
 
-SRC_FT 			= main mandelbrot julia dragon_curve bship\
-				  control mouse_control mouse_pos print_vars \
-				  launch set_vars color renders loops
+CONTROL_FT		= control zoom mouse_control print_vars
+
+FRACTALS_FT		= mandelbrot julia dragon_curve bship
+
+SRC_FT 			= main launch color renders loops
 
 ## List of Utilities
 
 SRC = $(SRC_FT:%=$(SRC_DIR)/%.c) \
 	$(UTILS_FT:%=$(SRC_DIR)/$(UTILS_DIR)/%.c) \
-	$(PARSING_FT:%=$(SRC_DIR)/$(PARSING_DIR)/%.c)
+	$(PARSING_FT:%=$(SRC_DIR)/$(PARSING_DIR)/%.c) \
+	$(CONTROL_FT:%=$(SRC_DIR)/$(CONTROL_DIR)/%.c) \
+	$(FRACTALS_FT:%=$(SRC_DIR)/$(FRACTALS_DIR)/%.c)
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIRS = $(OBJ_DIR) \
 	$(UTILS_DIR:%=$(OBJ_DIR)/%) \
-	$(PARSING_DIR:%=$(OBJ_DIR)/%)
+	$(PARSING_DIR:%=$(OBJ_DIR)/%) \
+	$(CONTROL_DIR:%=$(OBJ_DIR)/%) \
+	$(FRACTALS_DIR:%=$(OBJ_DIR)/%)
 
 
 ## Rules of Makefile

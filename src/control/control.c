@@ -6,11 +6,11 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/02 20:49:51 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:23:42 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fractol.h"
+#include "../../inc/fractol.h"
 
 void	ft_control(t_all *all)
 {
@@ -18,7 +18,7 @@ void	ft_control(t_all *all)
 		ft_exit(all);
 	if (all->key.plus == 1)
 		all->i_max += 1;
-	if (all->key.minus == 1)
+	if (all->key.minus == 1 && all->i_max > 10)
 		all->i_max -= 1;
 	if (all->key.up == 1)
 		all->y1 -= 40 / all->zoom;
@@ -29,23 +29,13 @@ void	ft_control(t_all *all)
 	if (all->key.right == 1)
 		all->x1 += 40 / all->zoom;
 	if (all->key.zoom_in == 1)
-	{
-		all->zoom += 0.5 * all->zoom;
-		all->x1 += 50 / all->zoom;
-		all->y1 += 50 / all->zoom;
-	}
-	if (all->key.zoom_out == 1 && all->zoom > 1)
-	{
-		all->zoom -= 0.5 * all->zoom;
-		all->x1 -= 50 / all->zoom;
-		all->y1 -= 50 / all->zoom;
-	}
+		ft_zoom_in(all);
+	if (all->key.zoom_out == 1 && all->zoom > 50)
+		ft_zoom_out(all);
 	if (all->key.print == 1)
 		ft_print_vars(all);
 	if (all->key.reset == 1)
 		ft_set_mandelbrot(all);
-	if (all->i_max < 10)
-		all->i_max = 10;
 }
 
 void	ft_control_dragon_curve(t_all *all)
