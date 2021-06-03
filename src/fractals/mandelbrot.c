@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:46:52 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 12:48:08 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 13:25:28 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	ft_launch_mandelbrot(t_all *all)
 	if (ft_launch(all) < 0)
 		return (-1);
 	ft_set_mandelbrot(all);
+	all->fractal = MANDELBROT;
 	ft_mandelbrot_loop(all);
 	return (0);
 }

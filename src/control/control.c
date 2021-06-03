@@ -6,11 +6,25 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:33:24 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 10:23:42 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 13:21:33 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/fractol.h"
+
+static void	ft_reset(t_all *all)
+{
+	if (all->fractal == MANDELBROT)
+		ft_set_mandelbrot(all);
+	else if (all->fractal == JULIA_ONE)
+		ft_set_julia_one(all);
+	else if (all->fractal == JULIA_TWO)
+		ft_set_julia_two(all);
+	else if (all->fractal == JULIA_THREE)
+		ft_set_julia_three(all);
+	else if (all->fractal == BSHIP)
+		ft_set_bship(all);
+}
 
 void	ft_control(t_all *all)
 {
@@ -35,7 +49,7 @@ void	ft_control(t_all *all)
 	if (all->key.print == 1)
 		ft_print_vars(all);
 	if (all->key.reset == 1)
-		ft_set_mandelbrot(all);
+		ft_reset(all);
 }
 
 void	ft_control_dragon_curve(t_all *all)

@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 21:09:08 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 12:40:31 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 13:25:51 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	ft_launch_bship(t_all *all)
 	if (ft_launch(all) < 0)
 		return (-1);
 	ft_set_bship(all);
+	all->fractal = BSHIP;
 	ft_bship_loop(all);
 	return (0);
 }
@@ -51,9 +52,9 @@ void	ft_bship(t_all *all, int x, int y, int i)
 				all->z_i = fabs(2 * all->tmp * all->z_i + all->c_i);
 				i++;
 			}
-			ft_choose_color(all, i);
 			if (i != all->i_max)
-				img_pix_put(&all->img, x, y, all->color);
+				img_pix_put(&all->img, x, y,
+					encode_rgb(i * 255 / all->i_max, 0, 0));
 		}
 	}
 }

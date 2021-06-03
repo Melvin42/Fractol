@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:16:13 by melperri          #+#    #+#             */
-/*   Updated: 2021/06/03 12:53:30 by melperri         ###   ########.fr       */
+/*   Updated: 2021/06/03 13:18:14 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ enum	e_error
 {
 	MLX_ERROR = -1,
 	SUCCESS,
+};
+
+enum	e_fractals
+{
+	MANDELBROT = 1,
+	JULIA_ONE,
+	JULIA_TWO,
+	JULIA_THREE,
+	BSHIP,
 };
 
 /*
@@ -88,6 +97,7 @@ typedef struct s_all
 	int			g;
 	int			b;
 	int			color;
+	int			fractal;
 	int			put_x;
 	int			put_y;
 	int			i_max;
