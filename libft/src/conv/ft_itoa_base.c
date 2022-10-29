@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 08:29:32 by melperri          #+#    #+#             */
-/*   Updated: 2021/05/24 15:25:53 by melperri         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:13:32 by melperri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,14 @@ static int	itoalen(unsigned int nb, char *base)
 
 char	*ft_itoa_base(int n, char *base)
 {
-	int				sign;
 	int				len;
 	unsigned int	nb;
 	char			*dest;
 
-	sign = -1;
 	if (n < 0)
 	{
 		n *= -1;
 		nb = n;
-		sign *= -1;
 	}
 	else
 		nb = n;
