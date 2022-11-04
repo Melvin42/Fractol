@@ -1,11 +1,11 @@
 # FRACTOL
-##### A graphic exercise
+#### A graphic exercise
 
-# About the project
-##### c programing - low-level graphic programing
+## About the project
+#### c programming - low-level graphic programming
 
-# How to use
-<sub>first step: compilation with a Makefile</sub>
+## How to use
+<sub>first step: compilate a Makefile</sub>
 
 <sub>use ```make```</sub>
 
@@ -13,6 +13,9 @@
 
 <sub>use ```./fractol``` </sub>
 
-# Go further
-<sub>This very complete program lack optimisation</sub>
-<sub>The first improvement should be a multithreading managment for the calculation of the fractal</sub>
+<sub>```RTFM :)``` </sub>
+
+## Go further
+<sub>To upgrade program optimisation</sub>
+
+<sub>The first improvement should be a multithreading management to calcul the fractal</sub>
